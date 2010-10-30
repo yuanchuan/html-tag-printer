@@ -13,7 +13,7 @@
     $args = func_get_args();
 
     /*
-     * Break a html element into the following small pieces
+     * Break a html element into the following small pieces:
      * 
      * <a        href="#"   >        hello     </a>
      * headtag   attr       midtag   text      endtag
@@ -28,7 +28,7 @@
     );
     
     /*
-     * The tags below are semi closed
+     * The tags below are semi-closed.
      */
     $semi_closed_pattern="/br|input|img|area|base|col|hr|meta|param/";
     
@@ -43,7 +43,7 @@
         $arg1=$args[1];
         
         /*
-         * The $args[1] is a text node rather than attrs
+         * The $args[1] is a text node rather than attrs.
          */
         if(is_string($arg1)){
           $html['text']=$arg1;
@@ -59,20 +59,20 @@
          * 
          * The distinction is that the two arrays have different type of array
          * keys.In the first case the type of the keys is string and in the second
-         * the type of keys is number;
+         * the type of keys is number.
          */
         
         if(is_array($arg1)){
           foreach($arg1 as $key => $value){
             if(is_string($key)){
               /*
-               * An array of attributes
+               * An array of attributes.
                */
               $html['attr'].=' '.$key.'='.'"'.$value.'"';
               
             }else{
               /*
-               * An array of embeded functions
+               * An array of embeded functions.
                */
               $html['text'].=$value;
             }
@@ -91,7 +91,7 @@
               
             }else if(is_array($arg2)){
               /*
-               * Iterate through the array and added them to the html text
+               * Iterate through the array and add them to the html text.
                */
                foreach($arg2 as $text){
                  $html['text'].=$text;
