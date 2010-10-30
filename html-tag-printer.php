@@ -1,15 +1,17 @@
 <?php
   /*
-   * 快速生成  html 标签
-   * version: 0.01
-   * Created: 2010/10/23
-   *
+   * 快速生成  html 标签   ( HTML Printer for PHP )
+   * 
+   * @link:    http://github.com/spirit23/html-tag-printer
+   * @version: 1.0
+   * @author:  Yuan Chuan (spirit23@163.com)
+   * @created: 2010/10/23
+   * @license: MIT License
    */
    
   function T(){
     $args = func_get_args();
-    $arg_num = func_num_args();
-    
+
     /*
      * A html element is composed of the following small pieces
      * 
@@ -26,17 +28,16 @@
     );
     
     /*
-     * Full closed html tags (<p></p> for instance) excludes the below tags
+     * The tags below are semi closed
      */
-    $full_tag_pattern="/[^br|input|img|area|base|col|hr|meta|param]/";
+    $semi_closed_pattern="/br|input|img|area|base|col|hr|meta|param/";
     
-    
-    if($arg_num && is_string($args[0])){
+    if(func_num_args() && is_string($args[0])){
       $tag=trim($args[0]);
       
       $html['headtag'] = '<'.$tag;
-      $html['midtag'] = preg_match($full_tag_pattern,$t) ? '>' : '';
-      $html['endtag'] = preg_match($full_tag_pattern,$t) ? '</'.$tag.'>' : ' />';
+      $html['midtag'] = preg_match($semi_closed_pattern,$tag) ?  '' : '>' ;
+      $html['endtag'] = preg_match($semi_closed_pattern,$tag) ? ' />' : '</'.$tag.'>'; 
       
       if(isset($args[1])){
         $arg1=$args[1];
@@ -57,7 +58,7 @@
          * child element tags.
          * 
          * The distinction is that the two arrays have different type of array
-         * keys.In the first situation the type of the keys is string and second
+         * keys.In the first case the type of the keys is string and in the second
          * the type of keys is number;
          */
         
@@ -67,13 +68,13 @@
               /*
                * An array of attributes
                */
-              $html['attr'].=' '.$attr.'='.'"'.$value.'"';
+              $html['attr'].=' '.$key.'='.'"'.$value.'"';
               
             }else{
               /*
                * An array of embeded functions
                */
-              $html['text'].=$key;
+              $html['text'].=$value;
             }
           }
           
@@ -92,8 +93,8 @@
               /*
                * Iterate through the array and added them to the html text
                */
-               foreach($arg2 as $value){
-                 $html['text'].=$value;
+               foreach($arg2 as $text){
+                 $html['text'].=$text;
                }
             }
           }
