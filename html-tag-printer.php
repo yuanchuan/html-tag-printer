@@ -13,7 +13,7 @@
     $args = func_get_args();
 
     /*
-     * A html element is composed of the following small pieces
+     * Break a html element into the following small pieces
      * 
      * <a        href="#"   >        hello     </a>
      * headtag   attr       midtag   text      endtag
