@@ -1,13 +1,13 @@
-<h1>Examples</h1>
+<html>
+<body>
+<h1>Some Examples</h1>
 
 <pre>
   echo T();
   
-  echo T('p');
+  echo T('p','hi');           //<p></p>
   
-  echo T('p','hi');
-  
-  echo T('p',array(
+  echo T('p',array(           //<p id="test" class="text">hi</p>
          'id'=>'test',
          'class'=>'test'
        ),'hi');
@@ -42,3 +42,6 @@
            T('a',array('href'=>'#'),'2'))
        ));
 </pre>
+
+</body>
+</html>
