@@ -36,8 +36,8 @@
       $tag=trim($args[0]);
       
       $html['headtag'] = '<'.$tag;
-      $html['midtag'] = preg_match($semi_closed_pattern,$tag) ?  '' : '>' ;
-      $html['endtag'] = preg_match($semi_closed_pattern,$tag) ? ' />' : '</'.$tag.'>'; 
+      $html['midtag'] = preg_match($semi_closed_pattern,$tag) ?  '' : '>';
+      $html['endtag'] = empty($html['midtag']) ? ' />' : '</'.$tag.'>';
       
       if(isset($args[1])){
         $arg1=$args[1];
@@ -48,8 +48,7 @@
         if(is_string($arg1)){
           $html['text']=$arg1;
         }
-        
-        
+               
         /*
          * There are two situations of the $args[1] to be an array:
          * 
@@ -77,8 +76,7 @@
               $html['text'].=$value;
             }
           }
-          
-          
+                   
           /*
            * The $args[2] is the text node whether it is a string or an array
            * of a strings.
