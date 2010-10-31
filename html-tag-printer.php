@@ -13,12 +13,11 @@
     $args = func_get_args();
 
     /*
-     * Break a html element into the following small pieces:
+     * Break a html element into five components:
      * 
      * <a        href="#"   >        hello     </a>
      * headtag   attr       midtag   text      endtag
      */
-    
     $html = array(
       'headtag' => '',
       'attr'    => '',
@@ -28,14 +27,15 @@
     );
     
     /*
-     * The tags below are semi-closed.
+     * A semi-closed tag has a different endtag and no midtag.
      */
-    $semi_closed_pattern="/br|input|img|area|base|col|hr|meta|param/";
+    $semi_closed_pattern="/input|img|area|base|col|hr|br|meta|param/";
+    
     
     if(func_num_args() && is_string($args[0])){
       $tag=trim($args[0]);
       
-      $html['headtag'] = '<'.$tag;
+      $html['headtag'] = '<'.$tag;       
       $html['midtag'] = preg_match($semi_closed_pattern,$tag) ?  '' : '>';
       $html['endtag'] = empty($html['midtag']) ? ' />' : '</'.$tag.'>';
       
@@ -43,14 +43,14 @@
         $arg1=$args[1];
         
         /*
-         * The $args[1] is a text node rather than attrs.
+         * $args[1] is a text node if it is of string type.
          */
         if(is_string($arg1)){
           $html['text']=$arg1;
         }
-               
+        
         /*
-         * There are two situations of the $args[1] to be an array:
+         * There are two situations of $args[1] to be an array:
          * 
          * 1.It is an array of attributes;
          * 2.It is an array of embeded self function calls and returns
@@ -71,29 +71,22 @@
               
             }else{
               /*
-               * An array of embeded functions.
+               * An array of embeded functions which returns string.
                */
               $html['text'].=$value;
             }
           }
                    
-          /*
-           * The $args[2] is the text node whether it is a string or an array
-           * of a strings.
-           */
           if(isset($args[2])){
             $arg2=$args[2];
             
+            /*
+             * $args[2] is a text node whether it's a string or an array of strings.
+             */
             if(is_string($arg2)){
               $html['text'].=$arg2;
-              
             }else if(is_array($arg2)){
-              /*
-               * Iterate through the array and add them to the html text.
-               */
-               foreach($arg2 as $text){
-                 $html['text'].=$text;
-               }
+              $html['text'].=join('',$arg2);
             }
           }
         }
