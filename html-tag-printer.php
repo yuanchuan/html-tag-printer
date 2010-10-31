@@ -81,7 +81,7 @@
             $arg2=$args[2];
             
             /*
-             * $args[2] is a text node whether it's a string or an array of strings.
+             * $args[2] is text node whether it's a string or an array of strings.
              */
             if(is_string($arg2)){
               $html['text'].=$arg2;
