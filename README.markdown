@@ -17,7 +17,7 @@
   More examples
 </h2>
 <p>
-  The arguments very in number as well as type.When no argument is passed it returns empty.
+  The arguments vary in number as well as type.When no argument is passed it returns empty.
 </p>
 <pre>
   echo T();
