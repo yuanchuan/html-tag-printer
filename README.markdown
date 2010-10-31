@@ -16,9 +16,13 @@
 <h2>
   More examples
 </h2>
-
+<p>
+  The arguments very in number as well as type.When no argument is passed it returns empty.
+</p>
 <pre>
   echo T();
+  
+  echo T('p');
   
   echo T('p','hi');
   
@@ -26,7 +30,11 @@
          'id'=>'test',
          'class'=>'test'
        ),'hi');
-  
+</pre>
+<p> 
+  It also can be nested!
+</p>
+<pre>
   echo T('div',array(
          T('p','content1'),
          T('p','content2'),
