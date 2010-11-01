@@ -63,11 +63,13 @@
         
         if(is_array($arg1)){
           foreach($arg1 as $key => $value){
+            $value=trim($value);
+            
             if(is_string($key)){
               /*
                * An array of attributes.
                */
-              $html['attr'].=' '.$key.'='.'"'.$value.'"';
+              $html['attr'].=empty($value) ? '' : (' '.$key.'="'.$value.'"');
               
             }else{
               /*
