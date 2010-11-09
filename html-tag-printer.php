@@ -35,7 +35,7 @@
     if(func_num_args() && is_string($args[0])){
       $tag=trim($args[0]);
       /*
-       * TODO: Detect invalidate tags
+       * TODO: Detect invalid tags
        */ 
       $html['headtag'] = '<'.$tag;       
       $html['midtag'] = preg_match($semi_closed_pattern,$tag) ?  '' : '>';
