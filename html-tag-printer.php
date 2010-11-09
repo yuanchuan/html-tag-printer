@@ -34,7 +34,9 @@
     
     if(func_num_args() && is_string($args[0])){
       $tag=trim($args[0]);
-      
+      /*
+       * TODO: Detect invalidate tags
+       */ 
       $html['headtag'] = '<'.$tag;       
       $html['midtag'] = preg_match($semi_closed_pattern,$tag) ?  '' : '>';
       $html['endtag'] = empty($html['midtag']) ? ' />' : '</'.$tag.'>';
@@ -46,6 +48,9 @@
          * $args[1] is a text node if it is of string type.
          */
         if(is_string($arg1)){
+          /*
+           * TODO: Convert special characters (<>'&) to HTML entity equivalent.
+           */
           $html['text']=$arg1;
         }
         
@@ -86,7 +91,11 @@
              * $args[2] is text node whether it's a string or an array of strings.
              */
             if(is_string($arg2)){
+              /*
+               * TODO: Convert special characters (<>'&) to HTML entity equivalent.
+               */
               $html['text'].=$arg2;
+              
             }else if(is_array($arg2)){
               $html['text'].=join('',$arg2);
             }
