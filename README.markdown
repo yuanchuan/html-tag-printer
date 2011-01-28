@@ -27,8 +27,8 @@
   echo T('p', 'hi');
   
   echo T('p', array(
-         'id'=>'test',
-         'class'=>'test'
+         'id' => 'test',
+         'class' => 'test'
        ),'hi');
 </pre>
 <p> 
