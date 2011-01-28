@@ -1,32 +1,32 @@
-<h1>
+<h2>
   HTML Tag Printer for PHP
-</h1>
+</h2>
 <p>
   It makes the code clean when there are many dynamic attributes to be set on the element:
 </p>
 
 <pre>
-  echo T('a',array(
-         'href'=>'http://www.google.com',
-         'id'=>'hi_google',
-         'target'=>'_blank'
-       ),'hi google');
+  echo T('a', array(
+         'href' => 'http://www.google.com',
+         'id' => 'hi_google',
+         'target' => '_blank'
+       ), 'hi google');
 </pre>
 
 <h2>
   More examples
 </h2>
 <p>
-  The arguments vary in number as well as type.When no argument is passed it returns empty.
+  The arguments vary in number as well as type. When no argument is passed it returns empty.
 </p>
 <pre>
   echo T();
   
   echo T('p');
   
-  echo T('p','hi');
+  echo T('p', 'hi');
   
-  echo T('p',array(
+  echo T('p', array(
          'id'=>'test',
          'class'=>'test'
        ),'hi');
@@ -35,23 +35,23 @@
   It also can be nested!
 </p>
 <pre>
-  echo T('div',array(
-         T('p','content1'),
-         T('p','content2'),
-         T('p','content3')
+  echo T('div', array(
+         T('p', 'content1'),
+         T('p', 'content2'),
+         T('p', 'content3')
        ));
 
-  echo T('div',array('id'=>'hello'),
-          T('div',array('id'=>'world'),array(
-            T('p','hello'),
-            T('p','world')
+  echo T('div', array('id' => 'hello'),
+          T('div', array('id' => 'world'), array(
+            T('p', 'hello'),
+            T('p', 'world')
           )
        ));
        
-  echo T('ul',array('id'=>'nav'),array(
+  echo T('ul', array('id' => 'nav'), array(
          T('li',
-           T('a',array('href'=>'#','id'=>'current'),'1')),
+           T('a', array('href' => '#', 'id' => 'current'), 'link1')),
          T('li',
-           T('a',array('href'=>'#'),'2'))
+           T('a', array('href' => '#'), 'link2'))
        ));
 </pre>
